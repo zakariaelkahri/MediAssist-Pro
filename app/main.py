@@ -4,6 +4,7 @@ from app.core.config import settings
 from app.api.routes import auth
 from app.db.session import engine
 from app.db.base import Base
+from app.seeders.seed import seed_all
 
 from app.models.user import User  # noqa
 from app.models.query import Query  # noqa
@@ -12,9 +13,16 @@ from app.models.query import Query  # noqa
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     async with engine.begin() as conn:
-        # to back : Alembic   
-        await conn.run_sync(Base.metadata.create_all)        
+
+        await conn.run_sync(Base.metadata.create_all)
+    
+    # try:
+    #     await seed_all()
+    # except Exception as e:
+    #     print(f"error during seeding data {e}")
+    
     yield
+
         
         
 app = FastAPI(

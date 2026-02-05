@@ -29,6 +29,7 @@ async def create_user(user_in: UserCreate, db: AsyncSession=Depends(get_db))->An
 
     user = User(
         email = user_in.email,
+        username = user_in.username,
         hashed_password = security.get_password_hash(user_in.password),
         role = "technician",
         
@@ -42,12 +43,12 @@ async def create_user(user_in: UserCreate, db: AsyncSession=Depends(get_db))->An
 @router.post("/login",response_model=Token)
 
 async def login_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSession = Depends(get_db))->Any:
-    # Note: OAuth2PasswordRequestForm utilise 'username' pour l'email
     
-    resault = await db.execute(select(User).filter(User.email == form_data.username ))
+    resault = await db.execute(select(User).filter(User.username == form_data.username ))
     user = resault.scalars().first()
     
-    if not user or not security.verify_password(form_data.password):
+    hashed_password = security.get_password_hash(form_data.password)
+    if not user or not security.verify_password(form_data.password,hashed_password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="password or email incorrect"  
