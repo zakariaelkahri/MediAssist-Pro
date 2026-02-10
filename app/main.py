@@ -21,9 +21,8 @@ async def lifespan(app: FastAPI):
     # except Exception as e:
     #     print(f"error during seeding data {e}")
     
-    yield
+    yield 
 
-        
         
 app = FastAPI(
     title="RAG Lab Support API",

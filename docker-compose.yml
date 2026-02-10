@@ -1,5 +1,3 @@
-# version: "3.9"
-
 name: rag-lab-support
 
 services:
@@ -67,7 +65,7 @@ services:
       - "${QDRANT_PORT:-6333}:6333"
       - "6334:6334"
     volumes:
-      - qdrant_data:/qdrant/storage
+      - ./qdrant_data:/qdrant/storage
     networks:
       - internal
     restart: always

@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int
     # for rag
     EMBEDDING_MODEL: str
+    LLAMA_KEY: str = "llx-VhCRAL5lWI2ROwdnCtCgGpmciLVcIhPKMAAKwugKJmqLohbo"
     
     # db
     DATABASE_URL: str
@@ -22,7 +23,6 @@ class Settings(BaseSettings):
     # rout
     API_V1_STR: str = "/api/v1"
     
-
         
 
 settings = Settings()
