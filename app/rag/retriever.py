@@ -25,9 +25,9 @@ retriever = ContextualCompressionRetriever(
 )
 
 query = "Le lecteur donne des valeurs différentes d’une rangée à l'autre. c'est quoi les causes probables ?"
-results = retriever.semantics(query)
+results = retriever.invoke(query)
 
 for r in results:
     print( r.page_content)
-    # print(f"Metadata: {r.metadata}")
+    print(f"Metadata: {r.metadata}")
     print("-" * 50)

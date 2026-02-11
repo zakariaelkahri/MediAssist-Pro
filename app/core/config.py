@@ -15,12 +15,12 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int
     # for rag
     EMBEDDING_MODEL: str
-    LLAMA_KEY: str = "llx-VhCRAL5lWI2ROwdnCtCgGpmciLVcIhPKMAAKwugKJmqLohbo"
-    
+    LLAMA_KEY: str #= "llx-VhCRAL5lWI2ROwdnCtCgGpmciLVcIhPKMAAKwugKJmqLohbo"
+    GEMINI_KEY: str #= "AIzaSyC7BqrljHvWDfBfL-Wu8B63gKisQui78Gs"
     # db
     DATABASE_URL: str
     
-    # rout
+    # routes
     API_V1_STR: str = "/api/v1"
     
         

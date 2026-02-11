@@ -5,7 +5,7 @@ from langchain_text_splitters import (
 
 def hybrid_chunk(text):
 
-    # STEP 1 — structure split
+
     md_splitter = MarkdownHeaderTextSplitter([
         ("#", "Chapter"),
         ("##", "Section"),
@@ -14,7 +14,7 @@ def hybrid_chunk(text):
     
     structured_docs = md_splitter.split_text(text)
 
-        # STEP 2 — recursive semantic split
+  
     recursive_splitter = RecursiveCharacterTextSplitter(
         chunk_size=800,
         chunk_overlap=150,
