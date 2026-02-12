@@ -1,3 +1,8 @@
 .env
-./app/rag/data/vectorstore
-./vectorstore
+/app/rag/data/vectorstore
+/vectorstore
+/ollama_data
+/pg_data
+/pgadmin_data
+/qdrant_data
+

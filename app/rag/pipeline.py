@@ -1,23 +1,20 @@
-# from langchain_community.llms import HuggingFacePipeline
-# from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
-# from app.rag.llm import model, tokenizer
+from app.rag.retriever import retriever
+from app.rag.llm import llm
+from app.rag.prompt import structured_prompt_template
 
-# save_path = "./data/models"
+def answer_question(user_question: str) -> str:
+    docs = retriever.invoke(user_question)
+    
+    context = "\n\n".join([doc.page_content for doc in docs])
+    
+    formatted_prompt = structured_prompt_template.format(
+        context=context,
+        question=user_question
+    )
+    
+    response = llm.generate_content(formatted_prompt)
+    
+    return response.text
 
-# tokenizer = AutoTokenizer.from_pretrained(save_path)
-# model = AutoModelForCausalLM.from_pretrained(
-#     save_path,
-#     device_map="auto",
-# )
-
-# pipe = pipeline(
-#      "text-generation",
-#      model=model,
-#      tokenizer=tokenizer,
-#      max_new_tokens=512,
-#  )
-
-
-# llm = HuggingFacePipeline(pipeline=pipe)
-
-# print("LLM loaded successfully")
+answer = answer_question("CONDITIONS REQUISES POUR L'INSTALLATION de balances")
+print(answer)

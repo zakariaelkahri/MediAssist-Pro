@@ -20,14 +20,14 @@ model = HuggingFaceCrossEncoder(model_name="BAAI/bge-reranker-base")
 compressor = CrossEncoderReranker(model=model, top_n=5)
 
 retriever = ContextualCompressionRetriever(
-    base_compressor=compressor, 
+    base_compressor=compressor,
     base_retriever=base_retriever
 )
 
-query = "Le lecteur donne des valeurs différentes d’une rangée à l'autre. c'est quoi les causes probables ?"
-results = retriever.invoke(query)
+# query = "Le lecteur donne des valeurs différentes d’une rangée à l'autre. c'est quoi les causes probables ?"
+# results = retriever.invoke(query)
 
-for r in results:
-    print( r.page_content)
-    print(f"Metadata: {r.metadata}")
-    print("-" * 50)
+# for r in results:
+#     print( r.page_content)
+#     print(f"Metadata: {r.metadata}")
+#     print("-" * 50)
